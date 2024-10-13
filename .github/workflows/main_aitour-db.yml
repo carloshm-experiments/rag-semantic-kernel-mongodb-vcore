@@ -2,7 +2,7 @@
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 # More info on Python, GitHub Actions, and Azure App Service: https://aka.ms/python-webapps-actions
 
-name: Build and deploy Python app to Azure Web App - recipe-chat
+name: Build and deploy Python app to Azure Web App - aitour-db
 
 on:
   push:
@@ -28,12 +28,12 @@ jobs:
           source venv/bin/activate
       
       - name: Install dependencies
-        run: cd src && pip install -r ./requirements.txt
+        run: pip install -r requirements.txt
         
       # Optional: Add step to run tests here (PyTest, Django test suites, etc.)
 
       - name: Zip artifact for deployment
-        run: cd src && zip ../release.zip ./* -r
+        run: zip release.zip ./* -r
 
       - name: Upload artifact for deployment jobs
         uses: actions/upload-artifact@v4
@@ -65,14 +65,14 @@ jobs:
       - name: Login to Azure
         uses: azure/login@v2
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_1F13EACC8AB54A67AB648176C48AD10B }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_AEE1BA8DB3FD40EE8C4D8F19CFB0A488 }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_2E85FEBB53FD4F64ABEC8F243A130DA5 }}
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_27094BD0050F439999C858F32A6BED8B }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_38E195C4E5A54B5AB3EF0BAE57EDD154 }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_72B2632381874F25A7DDDDEB68DC41F2 }}
 
       - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v3
         id: deploy-to-webapp
         with:
-          app-name: 'recipe-chat'
+          app-name: 'aitour-db'
           slot-name: 'Production'
           
